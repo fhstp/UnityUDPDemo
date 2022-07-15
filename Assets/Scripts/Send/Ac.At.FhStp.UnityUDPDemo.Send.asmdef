@@ -1,0 +1,16 @@
+{
+    "name": "Ac.At.FhStp.UnityUDPDemo.Send",
+    "rootNamespace": "Ac.At.FhStp.UnityUDPDemo.Send",
+    "references": [
+        "GUID:94b362ea0e2b73645805bf16823e523c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

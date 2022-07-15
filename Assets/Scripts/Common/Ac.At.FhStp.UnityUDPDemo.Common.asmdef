@@ -1,0 +1,14 @@
+{
+    "name": "Ac.At.FhStp.UnityUDPDemo.Common",
+    "rootNamespace": "Ac.At.FhStp.UnityUDPDemo",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
