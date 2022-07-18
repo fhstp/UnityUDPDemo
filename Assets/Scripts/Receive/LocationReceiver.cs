@@ -15,6 +15,9 @@ namespace Ac.At.FhStp.UnityUDPDemo.Receive
         private UdpReceiver receiver;
 
 
+        private void Awake() => 
+            MainThread.Initialize();
+
         private void OnEnable()
         {
             receiver = new UdpReceiver(IPAddress.Any, port);
@@ -26,11 +29,11 @@ namespace Ac.At.FhStp.UnityUDPDemo.Receive
             receiver.Dispose();
             receiver = null;
         }
-        
+
         private void OnPacketReceived(byte[] packet)
         {
             var stringContent = Encoding.ASCII.GetString(packet);
-            onPacketReceived.Invoke(stringContent);
+            MainThread.Run(() => onPacketReceived.Invoke(stringContent));
         }
 
     }
