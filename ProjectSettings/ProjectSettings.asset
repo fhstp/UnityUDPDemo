@@ -159,7 +159,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: at.ac.fhstp.unityudpdemo
     Standalone: ac.at.fhstp.unity-udp-demo
-    iPhone: at.ac.fhstp.unity-udp-demo
+    iPhone: at.ac.fhstp.xrdev.unity-udp-demo
   buildNumber:
     Standalone: 0
     iPhone: 0
