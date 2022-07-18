@@ -12,6 +12,7 @@ namespace Ac.At.FhStp.UnityUDPDemo.Send
     {
 
         [SerializeField] private UnityEvent<bool> onCanSendChanged;
+        [SerializeField] private UnityEvent<int> onSentBytes;
         [SerializeField] private int port;
 
         private Opt<LocationInfo> currentLocation = Opt.None<LocationInfo>();
@@ -19,13 +20,17 @@ namespace Ac.At.FhStp.UnityUDPDemo.Send
         private UdpClient client;
 
 
-        private bool CanSend => currentLocation.IsSome() && targetIP.IsSome();
+        private bool CanSend =>
+            currentLocation.IsSome() && targetIP.IsSome();
 
-        private Opt<string> LocationString => currentLocation.Map(it => $"Lat: {it.latitude}, Lng: {it.longitude}");
+        private Opt<string> LocationString =>
+            currentLocation.Map(it => $"Lat: {it.latitude}, Lng: {it.longitude}");
 
-        private Opt<byte[]> LocationBytes => LocationString.Map(Encoding.ASCII.GetBytes);
+        private Opt<byte[]> LocationBytes =>
+            LocationString.Map(Encoding.ASCII.GetBytes);
 
-        private Opt<IPEndPoint> EndPoint => targetIP.Map(it => new IPEndPoint(it, port));
+        private Opt<IPEndPoint> EndPoint =>
+            targetIP.Map(it => new IPEndPoint(it, port));
 
 
         private void OnEnable() =>
@@ -51,7 +56,7 @@ namespace Ac.At.FhStp.UnityUDPDemo.Send
             onCanSendChanged.Invoke(CanSend);
         }
 
-        public void OnSendButtonClicked() => 
+        public void OnSendButtonClicked() =>
             TrySendLocation();
 
         private void TrySendLocation()
@@ -69,6 +74,7 @@ namespace Ac.At.FhStp.UnityUDPDemo.Send
                 client.Connect(endPoint);
 
                 client.Send(bytes, bytes.Length);
+                onSentBytes.Invoke(bytes.Length);
             }
             catch
             {
