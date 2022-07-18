@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -71,14 +72,12 @@ namespace Ac.At.FhStp.UnityUDPDemo.Send
         {
             try
             {
-                client.Connect(endPoint);
-
-                client.Send(bytes, bytes.Length);
+                client.Send(bytes, bytes.Length, endPoint);
                 onInfo.Invoke($"OK! Sent {bytes.Length} bytes.");
             }
-            catch
+            catch (Exception e)
             {
-                onInfo.Invoke("Uh-oh could not send.");
+                onInfo.Invoke($"Uh-oh could not send: {e.Message}");
             }
         }
 
