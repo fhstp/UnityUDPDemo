@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.3587269, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -496,12 +496,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onSentBytes:
+  onInfo:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 779984557}
-        m_TargetAssemblyTypeName: Ac.At.FhStp.UnityUDPDemo.Send.SendInfoText, Ac.At.FhStp.UnityUDPDemo.Send
-        m_MethodName: OnSentBytes
+        m_TargetAssemblyTypeName: Ac.At.FhStp.UnityUDPDemo.FadeText, Ac.At.FhStp.UnityUDPDemo.Common
+        m_MethodName: Display
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1653,7 +1653,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Info]'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1739,7 +1739,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 779984553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3df1c07ff7aa9944bcc28e194cc551d, type: 3}
+  m_Script: {fileID: 11500000, guid: 51fc9ec9877223849999388c18e21626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   visibleTime: 1
@@ -2553,8 +2553,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1075.7866, y: 0}
+  m_SizeDelta: {x: 750, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1977157666
 MonoBehaviour:

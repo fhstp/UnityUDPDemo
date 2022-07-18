@@ -12,7 +12,7 @@ namespace Ac.At.FhStp.UnityUDPDemo.Send
     {
 
         [SerializeField] private UnityEvent<bool> onCanSendChanged;
-        [SerializeField] private UnityEvent<int> onSentBytes;
+        [SerializeField] private UnityEvent<string> onInfo;
         [SerializeField] private int port;
 
         private Opt<LocationInfo> currentLocation = Opt.None<LocationInfo>();
@@ -34,7 +34,7 @@ namespace Ac.At.FhStp.UnityUDPDemo.Send
 
 
         private void OnEnable() =>
-            client = new UdpClient();
+            client = new UdpClient(port);
 
         private void OnDisable()
         {
@@ -74,11 +74,11 @@ namespace Ac.At.FhStp.UnityUDPDemo.Send
                 client.Connect(endPoint);
 
                 client.Send(bytes, bytes.Length);
-                onSentBytes.Invoke(bytes.Length);
+                onInfo.Invoke($"OK! Sent {bytes.Length} bytes.");
             }
             catch
             {
-                Debug.LogError("Uh-oh could not send.");
+                onInfo.Invoke("Uh-oh could not send.");
             }
         }
 
