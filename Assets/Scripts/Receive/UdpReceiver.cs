@@ -8,7 +8,7 @@ namespace Ac.At.FhStp.UnityUDPDemo.Receive
     public class UdpReceiver : IDisposable
     {
 
-        private readonly UdpClient client;
+        private UdpClient client;
 
 
         public UdpReceiver(IPAddress remoteAddress, int port)
@@ -20,16 +20,22 @@ namespace Ac.At.FhStp.UnityUDPDemo.Receive
         }
 
 
-        public void Dispose() =>
+        public void Dispose()
+        {
             client.Dispose();
+            client = null;
+        }
 
         private void StartReceiving() =>
             client.BeginReceive(res =>
             {
-                IPEndPoint receivedEndpoint = null;
-                var packet = client.EndReceive(res, ref receivedEndpoint);
-                OnPacketReceived?.Invoke(packet);
-                StartReceiving();
+                if (client != null)
+                {
+                    IPEndPoint receivedEndpoint = null;
+                    var packet = client.EndReceive(res, ref receivedEndpoint);
+                    OnPacketReceived?.Invoke(packet);
+                    StartReceiving();
+                }
             }, null);
 
 
