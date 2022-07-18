@@ -1,6 +1,4 @@
-using System;
 using System.Net;
-using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,27 +11,26 @@ namespace Ac.At.FhStp.UnityUDPDemo.Receive
 
         [SerializeField] private int port;
         [SerializeField] private UnityEvent<string> onPacketReceived;
-        
 
-        private void OnEnable() =>
-            StartListening();
+        private UdpReceiver receiver;
 
-        private void StartListening()
+
+        private void OnEnable()
         {
-            var endPoint = new IPEndPoint(IPAddress.Any, port);
-            var client = new UdpClient(endPoint);
-
-            client.BeginReceive(res =>
-            {
-                var bytes = client.EndReceive(res, ref endPoint);
-                var packet = Encoding.ASCII.GetString(bytes);
-                OnPacketReceived(packet);
-            }, null);
+            receiver = new UdpReceiver(IPAddress.Any, port);
+            receiver.OnPacketReceived += OnPacketReceived;
         }
 
-        private void OnPacketReceived(string packet)
+        private void OnDisable()
         {
-            onPacketReceived.Invoke(packet);
+            receiver.Dispose();
+            receiver = null;
+        }
+        
+        private void OnPacketReceived(byte[] packet)
+        {
+            var stringContent = Encoding.ASCII.GetString(packet);
+            onPacketReceived.Invoke(stringContent);
         }
 
     }
